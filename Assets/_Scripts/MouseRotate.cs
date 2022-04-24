@@ -59,9 +59,10 @@ public class MouseRotate : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             _rotationEnabled = false;
-
             Cursor.lockState = CursorLockMode.None;
-            _refresh = true;
+
+            if(!Cursor.visible)
+                _refresh = true;
         }
         else if (_rotationEnabled)
         {

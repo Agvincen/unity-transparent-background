@@ -7,6 +7,7 @@ public class RandomAnimation : MonoBehaviour
     private Animator animator;
     public List<string> animations = new List<string>();
     public float prevAnimTime = 0f;
+    private int lastAnimPlayed = 0;
 
     void Awake()
     {
@@ -21,7 +22,7 @@ public class RandomAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //Left Click
+        if (Input.GetMouseButtonDown(0) && lastAnimPlayed == 0) //Left Click
         {
             PlayAnim(Random.Range(1, animations.Count));
             prevAnimTime = 0;
@@ -41,5 +42,6 @@ public class RandomAnimation : MonoBehaviour
         string anim = animations[index];
         animator.Play(anim);
         Debug.Log($"Playing {anim} animation");
+        lastAnimPlayed = index;
     }
 }
